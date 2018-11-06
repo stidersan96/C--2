@@ -1,2 +1,113 @@
 # Auto detect text files and perform LF normalization
 * text=auto
+#include <iostream>
+#include <vector>
+
+using namespace std;
+
+int main() {
+    char letter;
+    int data_value {0};
+    double average {0};
+    vector <int> numbers {};
+    do {
+    cout << "==================Shii Menu======================" << endl;
+    cout << "P - Print all numbers" << endl;
+    cout << "A - Add numbers" << endl;
+    cout << "C - To clear the list" << endl;
+    cout << "M - Find the average of the numbers" << endl;
+    cout << "S - Smallest number" << endl;
+    cout << "L - Largest number" << endl;
+    cout << "F - Find a number in your list" << endl;
+    cout << "Q - Quit" << endl;
+    cout << "Please choose a letter: ";
+    cin >> letter;
+    if (letter == 'p' or letter == 'P') {
+        if (numbers.size() != 0) {
+            cout << "[ ";
+            for (auto a : numbers) {
+                cout << a << ", ";                
+            }
+            cout << "]" << endl;
+        }
+        else
+            cout << "[] - The list is empty" << endl;
+    }
+    else if (letter == 'A' or letter == 'a') {
+        int data_number;
+        cout << "Please choose how many elements you want to add: ";
+        cin >> data_number;
+        for (int i {1}; i <= data_number; ++i) {
+            cout << "Please choose what to assign to value at vector [" << i << "]: ";
+            cin >> data_value;
+            numbers.push_back(data_value);
+            cout << "The value " << data_value << " is added" << endl;
+        }
+    }
+    else if (letter == 'm' or letter == 'M') {
+        if (numbers.size() != 0) {
+            for (auto a : numbers)
+                average += a;
+            cout << "The average value is: " << average / numbers.size() << endl;
+        }
+    }
+    else if (letter == 's' or letter == 'S') {
+        if (numbers.size() != 0) {
+            int min_num;
+            min_num = numbers.at(1);
+            for (auto num : numbers)
+                if (num < min_num)
+                    min_num = num;
+            cout << "The smallest number is: " << min_num << endl;
+        }
+        else
+            cout << "[] - The list is empty!" << endl;
+    }
+    else if (letter == 'l' or letter == 'L') {
+        if (numbers.size() != 0) {
+            int max_num;
+            max_num = numbers.at(1);
+            for (auto num : numbers)
+                if (num > max_num)
+                    max_num = num;
+            cout << "The maximum value is: " << max_num << endl;
+        }
+        else
+            cout << "[] - The list is empty!" << endl;
+    }
+    else if (letter == 'c' or letter == 'C') {
+        if (numbers.size() !=0) {
+            numbers.clear();
+            cout << "The list is cleared!" << endl;
+        }
+        else
+            cout << "There is nothing to clear!" << endl;
+    }
+    else if (letter == 'f' or letter == 'F') {
+        if (numbers.size() != 0) {
+            int find_num;
+            int count {0};
+            cout << "Please enter the number you want to find: ";
+            cin >> find_num;
+            for (auto a: numbers)
+                if (find_num == a)
+                    ++count;
+            cout << "There is " << count << " results" << endl;
+                    
+        }
+        else
+            cout << "[] - There is nothing to find here!" << endl;
+    }
+    else if (letter == 'q' or letter == 'Q') {
+        cout << "Good bye master.." << endl;
+    }
+    else {
+        cout << "Sorry that's invalid" << endl;
+        cout << "================= X =================" << endl;
+    }
+    
+    
+    
+} while (letter != 'q' and letter != 'Q');
+    
+}
